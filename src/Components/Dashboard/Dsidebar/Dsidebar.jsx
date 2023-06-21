@@ -2,6 +2,7 @@ import React from "react";
 import "./Dsidebar.scss";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
+import { Link } from "react-router-dom";
 
 const Dsidebar = () => {
   return (
@@ -25,8 +26,8 @@ const Dsidebar = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">All List</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Create</Dropdown.Item>
+                  <Dropdown.Item href="#/action-1"><Link to="/AllList">All List</Link></Dropdown.Item>
+                  <Dropdown.Item href="#/action-2"> <Link to="/Create">Create</Link></Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
 
