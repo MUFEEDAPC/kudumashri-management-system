@@ -11,6 +11,7 @@ import {  createkudumpashriApi } from "../api/kudumpashri";
 const INITIAL_STATE =  {
     loading: false,
     error: {},
+    states:[],
     // user: {
     //   email: "",
     //   username: "",
@@ -32,10 +33,14 @@ const kudumpashriSlice = createSlice({
         },
         [createkudumpashriApi.fulfilled]: (state, action) => {
             state.loading = false;
+            state.states=action.payload;
+            state.error = {};
+
             
         },
         [createkudumpashriApi.rejected]: (state, action) => {
             state.loading = false;
+            state.error = action.error;
         },
 
        
