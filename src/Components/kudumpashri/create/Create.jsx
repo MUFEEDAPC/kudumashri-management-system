@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../../Dashboard/Layout/Layout'
 import { useState } from 'react';
 import "./create.scss"
@@ -6,6 +6,7 @@ import { Col, Row } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createkudumpashriApi } from '../../../Store/api/kudumpashri';
+import { lgsPanchayathApi, lgsconstituencyApi, lgsdistrictApi } from '../../../Store/api/lgs';
 
 
 const Create = () => {
@@ -13,10 +14,16 @@ const Create = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-	const {loading}=useSelector((state)=>({loading:state.authSlice.loading}))  
+	const {loading}=useSelector((state)=>({
+    loading:state.lgsSlice.loading,
+  }))  
+
+  
+ 
   const [createData,setCreateData]=useState({name:"",postoffice:"",pinCode:"",wardName:"",place:"",district:"",constituency:"",panchayat:"",wardCouncilor:""
   ,councilorContact:"",logo:"",joinedDate:"",weeklyPayableAmount:"",isPaid:false, isActive:false});
   console.log(createData);
+
 
 const kudumpashriCreateSubmit=(e)=>{
  e.preventDefault();
@@ -26,43 +33,28 @@ const kudumpashriCreateSubmit=(e)=>{
   };
  dispatch(createkudumpashriApi(data))
 }
+// const {panchayaths}=useSelector((state)=>state.lgsSlice.panchayaths);
 
-  // const [formData, setFormData] = useState({
-  //   name: '',
-  //   postoffice: '',
-  //   pinCode: '',
-  //   wardName: '',
-  //   place: '',
-  //   district: '',
-  //   constituency: '',
-  //   panchayat: '',
-  //   wardCouncilor: '',
-  //   councilorContact: '',
-  //   logo: '',
-  //   joinedDate: '',
-  //   weeklyPayableAmount: '',
-  //   isPaid: false,
-  //   isActive: false,
-  // });
- 
-  // const handleChange = (e) => {
-  //   const { name, value, type, checked } = e.target;
-  //   const newValue = type === 'checkbox' ? checked : value;
-
-  //   setFormData((prevData) => ({
-  //     ...prevData,
-  //     [name]: newValue,
-  //   }));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   // Perform form submission or validation logic here
-  //   console.log(formData);
-  // };
-  return (
-    <div>
+const { districts} = useSelector((state)=> ({
+  districts:state.lgsSlice.districts
+}))
+useEffect(()=>{ 
+  dispatch(lgsdistrictApi())
+},[])
+const { constituencys} = useSelector((state)=> ({
+  constituencys:state.lgsSlice.constituencys
+}))
+useEffect(()=>{ 
+  dispatch(lgsconstituencyApi())
+},[])
+const { panchayats} = useSelector((state)=> ({
+  panchayats:state.lgsSlice.panchayats
+}))
+useEffect(()=>{ 
+  dispatch(lgsPanchayathApi())
+},[])
+ return(
+  <div>
     <Layout>
 
 
@@ -72,14 +64,14 @@ const kudumpashriCreateSubmit=(e)=>{
         <Col>
         <label className="form-label">
         Name:
-        <input className="form-input" type="String" name="name"  onChange={(e)=>setCreateData({
+        <input className="form-input" type="text" name="name"  onChange={(e)=>setCreateData({
 					...createData,name:e.target.value
 				})} />
       </label>
       <br />
       <label className="form-label">
         Post Office:
-        <input className="form-input" type="String" name="postoffice"  onChange={(e)=>setCreateData({
+        <input className="form-input" type="text" name="postoffice"  onChange={(e)=>setCreateData({
 					...createData,postoffice:e.target.value
 				})}  />
       </label>
@@ -93,45 +85,60 @@ const kudumpashriCreateSubmit=(e)=>{
       <br />
       <label className="form-label">
         Ward Name:
-        <input className="form-input" type="String" name="wardName" onChange={(e)=>setCreateData({
+        <input className="form-input" type="text" name="wardName" onChange={(e)=>setCreateData({
 					...createData,wardName:e.target.value
 				})}  />
       </label>
       <br />
       <label className="form-label">
         Place:
-        <input className="form-input" type="String" name="place"  onChange={(e)=>setCreateData({
+        <input className="form-input" type="text" name="place"  onChange={(e)=>setCreateData({
 					...createData,place:e.target.value
 				})}/>
       </label>
       <br />
       <label className="form-label">
-        District:
-        <input className="form-input" type="Schema.Types.ObjectId" name="district" onChange={(e)=>setCreateData({
-					...createData,place:e.target.value
-				})}/>
-      </label>
+            District:
+            <select name="district"  type="select" className="form-input" required>
+              <option>Select District</option>
+              {districts?.list?.map((districts, key) => (
+                <option key={key} value={districts?._id}>
+                  {districts?.name}
+                </option>
+              ))}
+            </select>
+          </label>
       <br />
       <label className="form-label">
-        Constituency:
-        <input className="form-input" type="Schema.Types.ObjectId" name="constituency"  onChange={(e)=>setCreateData({
-					...createData,constituency:e.target.value
-				})}/>
-      </label>
+      constituency:
+            <select name="constituency"  type="select" className="form-input" required>
+              <option>Select constituency</option>
+              {constituencys?.list?.map((constituencys, key) => (
+                <option key={key} value={constituencys?._id}>
+                  {constituencys?.name}
+                </option>
+              ))}
+            </select>
+          </label>
       <br />
       </Col>
         <Col> 
        
-      <label className="form-label">
-        Panchayat:
-        <input className="form-input" type="Schema.Types.ObjectId" name="panchayat"  onChange={(e)=>setCreateData({
-					...createData,panchayat:e.target.value
-				})}/>
-      </label>
+        <label className="form-label">
+      punchayath:
+            <select name="panchayat"  type="select" className="form-input" required>
+              <option>Select punchayath</option>
+              { panchayats?.list?.map(( panchayats, key) => (
+                <option key={key} value={ panchayats?._id}>
+                  { panchayats?.name}
+                </option>
+              ))}
+            </select>
+          </label>
       <br />
       <label className="form-label">
         Ward Councilor:
-        <input className="form-input" type="String" name="wardCouncilor"  onChange={(e)=>setCreateData({
+        <input className="form-input" type="text" name="wardCouncilor"  onChange={(e)=>setCreateData({
 					...createData,wardCouncilor:e.target.value
 				})} />
       </label>
@@ -186,7 +193,8 @@ const kudumpashriCreateSubmit=(e)=>{
     </form>
   
 
-   </Layout></div>
+   </Layout>
+  </div>
   )
 }
 

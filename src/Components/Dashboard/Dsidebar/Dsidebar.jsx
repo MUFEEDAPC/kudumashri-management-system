@@ -26,8 +26,8 @@ const Dsidebar = () => {
                 </Dropdown.Toggle>
 
                 <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1"><Link to="/AllList">All List</Link></Dropdown.Item>
-                  <Dropdown.Item href="#/action-2"> <Link to="/Create">Create</Link></Dropdown.Item>
+                  <Dropdown.Item ><Link to="/AllList">All List</Link></Dropdown.Item>
+                  <Dropdown.Item > <Link to="/Create">Create</Link></Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>
 
