@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createkudumpashriApi } from "../api/kudumpashri";
+import { allListkudumpashriApi } from "../api/kudumpashri";
 
 // const INITIAL_STATE = {
 //     products: [],
@@ -10,7 +11,7 @@ import { createkudumpashriApi } from "../api/kudumpashri";
 const INITIAL_STATE = {
   loading: false,
   error: {},
-  states: [],
+  kudumpashries: [],
   // user: {
   //   email: "",
   //   username: "",
@@ -25,15 +26,28 @@ const kudumpashriSlice = createSlice({
   reducers: {},
   extraReducers: {
     //createProduct
-    [createkudumpashriApi.pending]: (state, action) => {
+    [createkudumpashriApi.pending]: (state) => {
       state.loading = true;
     },
     [createkudumpashriApi.fulfilled]: (state, action) => {
       state.loading = false;
-      state.states = action.payload;
+      state.kudumpashries = action.payload;
       state.error = {};
     },
     [createkudumpashriApi.rejected]: (state, action) => {
+      state.loading = false;
+      state.error = action.error;
+    },
+    //allListProduct
+    [allListkudumpashriApi.pending]: (state) => {
+      state.loading = true;
+    },
+    [allListkudumpashriApi.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.kudumpashries = action.payload;
+      state.error = {};
+    },
+    [allListkudumpashriApi.rejected]: (state, action) => {
       state.loading = false;
       state.error = action.error;
     },

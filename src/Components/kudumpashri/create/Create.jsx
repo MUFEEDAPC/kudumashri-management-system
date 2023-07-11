@@ -99,7 +99,9 @@ useEffect(()=>{
       <br />
       <label className="form-label">
             District:
-            <select name="district"  type="select" className="form-input" required>
+            <select name="district"  type="select" className="form-input" onChange={(e)=>setCreateData({
+					...createData,district:e.target.value
+				})} required>
               <option>Select District</option>
               {districts?.list?.map((districts, key) => (
                 <option key={key} value={districts?._id}>
@@ -111,7 +113,11 @@ useEffect(()=>{
       <br />
       <label className="form-label">
       constituency:
-            <select name="constituency"  type="select" className="form-input" required>
+            <select name="constituency"  type="select" className="form-input" required
+            onChange={(e)=>setCreateData({
+              ...createData,constituency:e.target.value
+            })}>
+            
               <option>Select constituency</option>
               {constituencys?.list?.map((constituencys, key) => (
                 <option key={key} value={constituencys?._id}>
@@ -126,7 +132,10 @@ useEffect(()=>{
        
         <label className="form-label">
       punchayath:
-            <select name="panchayat"  type="select" className="form-input" required>
+            <select name="panchayat"  type="select" className="form-input" required 
+            onChange={(e)=>setCreateData({
+              ...createData,panchayat:e.target.value
+            })}>
               <option>Select punchayath</option>
               { panchayats?.list?.map(( panchayats, key) => (
                 <option key={key} value={ panchayats?._id}>
@@ -176,19 +185,19 @@ useEffect(()=>{
      
       <label className="form-label">
         Is Paid:
-        <input className="form-input" type="Boolean" name="isPaid"  onChange={(e)=>setCreateData({
-					...createData,isPaid:e.target.value
+        <input className="form-input" type="checkbox" name="isPaid"  onChange={(e)=>setCreateData({
+					...createData,isPaid:e.target.checked
 				})} />
       </label>
       <br />
       <label className="form-label">
         Is Active:
-        <input className="form-input" type="Boolean" name=" isActive"  onChange={(e)=>setCreateData({
-					...createData,isPaid:e.target.value
+        <input className="form-input" type="checkbox" name="isActive"  onChange={(e)=>setCreateData({
+					...createData,isPaid:e.target.checked
 				})}  />
       </label>
       <br />
-      <button className='submitbtnform' type="submit">{loading? 'loading':'Submit'}</button>
+      <button style={{width:"130px",marginLeft:"330px"}} className='submitbtnform' type="submit">{loading? 'loading':'Submit'}</button>
       </Row>
     </form>
   
