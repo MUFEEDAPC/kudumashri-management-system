@@ -10,18 +10,21 @@ import { Route, Routes } from "react-router-dom";
 import Create from "./Components/kudumpashri/create/Create";
 import AllList from "./Components/kudumpashri/allList/AllList";
 import SingleView from "./Components/Single View/SingleView";
+import Update from "./Components/Update/Update";
 
 function App() {
   return (
     <div className="App">
-      <Routes>
+      {/* <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/error" element={<Error />}></Route>
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/Create" element={<Create />}></Route>
         <Route path="/AllList" element={<AllList />}></Route>
-        {/* <Route path="/SingleView" element={<SingleView />}></Route> */}
-      </Routes>
+      
+     </Routes> */}
+      {/* <SingleView /> */}
+      <Update />
     </div>
   );
 }
