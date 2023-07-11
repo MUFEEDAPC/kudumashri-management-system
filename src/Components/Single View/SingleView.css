@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+  }
+
+  th,
+  td {
+    padding: 8px; /* Adjust the padding as needed */
+    text-align: left;
+  }
+
+  th:first-child,
+  td:first-child {
+    width: 15%; /* Adjust the width as needed */
+  }
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: 5%; /* Adjust the width as needed */
+  }
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 70%; /* Adjust the width as needed */
+  }
+  .divbutton
+  {
+    display: flex;
+    margin-left: 230px;
+ 
+    
+  }

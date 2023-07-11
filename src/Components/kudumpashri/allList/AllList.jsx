@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
 import { allListkudumpashriApi } from "../../../Store/api/kudumpashri";
 import { BsFillEyeFill } from "react-icons/bs";
-
+import "./allList.scss";
 const AllList = () => {
   const dispatch = useDispatch();
   const { tableData } = useSelector((state) => ({
     tableData: state.kudumpashriSlice.kudumpashries,
   }));
-  console.log(tableData);
 
   useEffect(() => {
     dispatch(allListkudumpashriApi());
