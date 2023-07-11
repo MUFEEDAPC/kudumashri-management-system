@@ -15,16 +15,18 @@ import Update from "./Components/Update/Update";
 function App() {
   return (
     <div className="App">
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Login />}></Route>
         <Route path="/error" element={<Error />}></Route>
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/Create" element={<Create />}></Route>
         <Route path="/AllList" element={<AllList />}></Route>
+        <Route path="/SingleView" element={<SingleView />}></Route>
+        <Route path="/Update" element={<Update />}></Route>
       
-     </Routes> */}
+     </Routes>
       {/* <SingleView /> */}
-      <Update />
+      {/* <Update /> */}
     </div>
   );
 }
