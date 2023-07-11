@@ -23,8 +23,7 @@ function App() {
         <Route path="/AllList" element={<AllList />}></Route>
         <Route path="/SingleView" element={<SingleView />}></Route>
         <Route path="/Update" element={<Update />}></Route>
-      
-     </Routes>
+      </Routes>
       {/* <SingleView /> */}
       {/* <Update /> */}
     </div>
