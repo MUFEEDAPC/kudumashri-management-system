@@ -10,7 +10,6 @@ const AllList = () => {
   const { tableData } = useSelector((state) => ({
     tableData: state.kudumpashriSlice.kudumpashries,
   }));
-  console.log(tableData);
 
   useEffect(() => {
     dispatch(allListkudumpashriApi());
