@@ -5,15 +5,18 @@ import { useState } from "react";
 import { allListkudumpashriApi } from "../../../Store/api/kudumpashri";
 import { BsFillEyeFill } from "react-icons/bs";
 import "./allList.scss";
+import { Link } from "react-router-dom";
+import moment from "moment/moment";
 const AllList = () => {
   const dispatch = useDispatch();
   const { tableData } = useSelector((state) => ({
-    tableData: state.kudumpashriSlice.kudumpashries,
+    tableData: state. kudumbashri.kudumpashries,
   }));
 
   useEffect(() => {
     dispatch(allListkudumpashriApi());
   }, [dispatch]);
+  console.log(tableData);
 
   return (
     <div>
@@ -35,12 +38,14 @@ const AllList = () => {
               <tr key={key}>
                 <td>{key + 1}</td>
                 <td>{tableData.name}</td>
-                <td>{tableData.wardName}</td>
+                <td style={{width:"30px"}}>{tableData.wardName}</td>
                 <td>{tableData.wardCouncilor}</td>
                 <td>{tableData.councilorContact}</td>
-                <td>{tableData.joinedDate}</td>
+                <td>{moment(tableData.joinedDate).format("MMM Do YY")}</td>
                 <td>
-                  <BsFillEyeFill />
+                  <Link to={`/SingleView/${tableData?._id}`}>
+                    <BsFillEyeFill />
+                  </Link>
                 </td>
               </tr>
             ))}

@@ -21,8 +21,8 @@ function App() {
         <Route path="/Dashboard" element={<Dashboard />}></Route>
         <Route path="/Create" element={<Create />}></Route>
         <Route path="/AllList" element={<AllList />}></Route>
-        <Route path="/SingleView" element={<SingleView />}></Route>
-        <Route path="/Update" element={<Update />}></Route>
+        <Route path="/SingleView/:id" element={<SingleView />}></Route>
+        <Route path="/Update/:id" element={<Update />}></Route>
       </Routes>
       {/* <SingleView /> */}
       {/* <Update /> */}

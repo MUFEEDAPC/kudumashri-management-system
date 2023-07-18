@@ -13,7 +13,7 @@ import lgsSlice from "./lsgReducer";
 const reducers = combineReducers({
   menu,
   authSlice,
-  kudumpashriSlice,
+  kudumbashri:kudumpashriSlice,
   lgsSlice,
   // adminSlice,
 });
